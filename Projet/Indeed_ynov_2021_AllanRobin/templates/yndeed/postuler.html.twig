@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Postuler :)
+{% endblock %}
+
+{% block body %}
+        <h1>Félicitations!</h1>
+        <p>Vous avez postulé à l'offre, à dans 6 mois pour des nouvelles!</br></p>
+        <p>En attendant Visitez d'autres offres ou revenez à l'acceuil...</br></p>
+
+		    <a href="{{path('offres')}}" class="btn btn-primary">Offres</a>
+            <a href="{{path('home')}}" class="btn btn-primary">Acceuil</a>
+
+{% endblock %}

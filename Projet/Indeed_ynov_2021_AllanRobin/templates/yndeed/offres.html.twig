@@ -5,9 +5,19 @@
 
 {% block body %}
 	<section class="offres">
-		<h2>Article de qualité</h2>
-		<p>Texte de qualité</p>
-		<a class="btn btn-secondary">Postuler</a>
+		{% for offre in offres %}
+			<h2>{{offre.Title}}</h2>
+			<h3>Description</h3>
+			<p>{{offre.Description}}</p>
+			<p>Ville:
+				{{offre.Ville}}</br>
+				Type de contrat:
+				{{offre.TypeDeContrat}}</br></p>
+
+			<a href="{{path('offreShow', {'id':offre.id}) }}" class="btn btn-primary">Montrer</a>
+
+
+		{% endfor %}
 
 
 	</section>
