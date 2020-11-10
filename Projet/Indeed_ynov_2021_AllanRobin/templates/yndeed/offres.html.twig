@@ -7,12 +7,10 @@
 	<section class="offres">
 		{% for offre in offres %}
 			<h2>{{offre.Title}}</h2>
-			<h3>Description</h3>
-			<p>{{offre.Description}}</p>
 			<p>Ville:
 				{{offre.Ville}}</br>
 				Type de contrat:
-				{{offre.TypeDeContrat}}</br></p>
+				{{offre.typeDeContrat}}</br></p>
 
 			<a href="{{path('offreShow', {'id':offre.id}) }}" class="btn btn-primary">Montrer</a>
 

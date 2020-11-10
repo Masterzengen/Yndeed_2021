@@ -16,6 +16,7 @@ class YndeedController extends AbstractController
     {
         $repo = $this->getDoctrine()->getRepository(Offres::class);
         $offres = $repo->findAll();
+        dd($offres);
 
         return $this->render('yndeed/offres.html.twig', [
             'controller_name' => 'YndeedController',

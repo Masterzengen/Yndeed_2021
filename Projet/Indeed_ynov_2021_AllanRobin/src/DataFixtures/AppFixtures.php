@@ -5,6 +5,8 @@ namespace App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Offres;
+use App\Entity\TypeContrat;
+use App\Entity\Contrat;
 use Faker\Factory;
 use Faker;
 
@@ -13,6 +15,16 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
+
+        $Contrat = new Contrat();
+        $Contrat->setName("CDD");
+
+        $manager->persist($Contrat);
+
+        $TypeContrat = new TypeContrat();
+        $TypeContrat->setName("Temps plein");
+
+        $manager->persist($TypeContrat);
 
         for ($i = 1; $i <= 10; $i++) {
             $offre = new Offres();
@@ -24,8 +36,8 @@ class AppFixtures extends Fixture
                 ->setDateDeCreation(new \DateTime())
                 ->setDateDeMiseAJour(new \DateTime())
                 ->setFinDeLaMission(new \DateTime())
-                ->setTypeDeContrat($faker->randomElement($array = array ('Temps plein','Temps partiel')))
-                ->setContrat($faker->randomElement($array = array ('CDD','CDI','FREE')));
+                ->setContrat($Contrat)
+                ->setTypeDeContrat($TypeContrat);
             $manager->persist($offre);
         }
         // $product = new Product();
