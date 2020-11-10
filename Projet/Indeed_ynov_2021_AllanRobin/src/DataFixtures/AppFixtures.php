@@ -24,8 +24,8 @@ class AppFixtures extends Fixture
                 ->setDateDeCreation(new \DateTime())
                 ->setDateDeMiseAJour(new \DateTime())
                 ->setFinDeLaMission(new \DateTime())
-                ->setTypeDeContrat("Work in progress")
-                ->setContrat($faker->randomElement($array = array ('a','b','c')));
+                ->setTypeDeContrat($faker->randomElement($array = array ('Temps plein','Temps partiel')))
+                ->setContrat($faker->randomElement($array = array ('CDD','CDI','FREE')));
             $manager->persist($offre);
         }
         // $product = new Product();

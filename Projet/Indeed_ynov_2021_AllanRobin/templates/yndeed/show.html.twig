@@ -6,7 +6,7 @@
 		<strong>Description</strong>
 
     <p>{{offre.Description}}</br></p>
-    <p>Ville: {{offre.Ville}} </br>   Adresse: {{offre.Adresse}} </br>  Type de contrat: {{offre.typeDeContrat}} </br></p>
+    <p>Ville: {{offre.Ville}} </br>   Adresse: {{offre.Adresse}} </br>  Contrat: {{offre.Contrat}} </br>Type de contrat: {{offre.typeDeContrat}} </br></p>
     </br>
     <p>Dernière mise à jour: {{offre.dateDeMiseAJour | date('d/m/Y')}}   </br> Date de création: {{offre.DateDeCreation | date('d/m/Y')}}</p>
     <a href="{{path('postuler', {'id':offre.id}) }}" class="btn btn-primary">Postuler</a>
