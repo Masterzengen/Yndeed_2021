@@ -57,16 +57,18 @@ class Offres
      */
     private $finDeLaMission;
 
-
     /**
-     * @ORM\OneToOne(targetEntity=TypeContrat::class, mappedBy="offre", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=TypeContrat::class, inversedBy="offres")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $typeDeContrat;
+    private $typeContrat;
 
     /**
-     * @ORM\OneToOne(targetEntity=Contrat::class, mappedBy="offres", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Contrat::class, inversedBy="offres")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $contrat;
+
 
   
 
@@ -171,15 +173,14 @@ class Offres
         return $this;
     }
 
-
-    public function getTypeDeContrat(): ?string
+    public function getTypeContrat(): ?TypeContrat
     {
-        return $this->typeDeContrat;
+        return $this->typeContrat;
     }
 
-    public function setTypeDeContrat($typeDeContrat): self
+    public function setTypeContrat(?TypeContrat $typeContrat): self
     {
-        $this->typeDeContrat = $typeDeContrat;
+        $this->typeContrat = $typeContrat;
 
         return $this;
     }
@@ -189,17 +190,17 @@ class Offres
         return $this->contrat;
     }
 
-    public function setContrat(Contrat $contrat): self
+    public function setContrat(?Contrat $contrat): self
     {
         $this->contrat = $contrat;
 
-        // set the owning side of the relation if necessary
-        if ($contrat->getOffres() !== $this) {
-            $contrat->setOffres($this);
-        }
-
         return $this;
     }
+
+
+
+
+  
 
    
 }

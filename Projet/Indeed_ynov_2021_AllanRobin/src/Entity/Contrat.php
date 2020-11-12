@@ -19,22 +19,23 @@ class Contrat
      */
     private $id;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Offres::class, inversedBy="contrat", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $offres;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $Name;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Offres::class, mappedBy="contrat")
+     */
+    private $offres;
+
 
 
     public function __construct()
     {
         $this->contrat = new ArrayCollection();
+        $this->offres = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -42,21 +43,6 @@ class Contrat
         return $this->id;
     }
 
-    /**
-     * @return Collection|Offres[]
-     */
-
-    public function getOffres(): ?Offres
-    {
-        return $this->offres;
-    }
-
-    public function setOffres(Offres $offres): self
-    {
-        $this->offres = $offres;
-
-        return $this;
-    }
 
     public function getName(): ?string
     {
@@ -66,6 +52,36 @@ class Contrat
     public function setName(string $Name): self
     {
         $this->Name = $Name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Offres[]
+     */
+    public function getOffres(): Collection
+    {
+        return $this->offres;
+    }
+
+    public function addOffre(Offres $offre): self
+    {
+        if (!$this->offres->contains($offre)) {
+            $this->offres[] = $offre;
+            $offre->setContrat($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffre(Offres $offre): self
+    {
+        if ($this->offres->removeElement($offre)) {
+            // set the owning side to null (unless already changed)
+            if ($offre->getContrat() === $this) {
+                $offre->setContrat(null);
+            }
+        }
 
         return $this;
     }

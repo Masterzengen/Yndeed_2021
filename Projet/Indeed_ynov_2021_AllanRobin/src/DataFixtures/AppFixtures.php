@@ -37,7 +37,7 @@ class AppFixtures extends Fixture
                 ->setDateDeMiseAJour(new \DateTime())
                 ->setFinDeLaMission(new \DateTime())
                 ->setContrat($Contrat)
-                ->setTypeDeContrat($TypeContrat);
+                ->setTypeContrat($TypeContrat);
             $manager->persist($offre);
         }
         // $product = new Product();
