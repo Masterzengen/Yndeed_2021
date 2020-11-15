@@ -4,21 +4,23 @@
 {% endblock %}
 
 {% block body %}
+	
+
 	<section class="offres">
 		{% for offre in offres %}
-			<h2>{{offre.Title}}</h2>
-			<p>Ville:
-				{{offre.Ville}}</br>
-				Type de contrat:
-				{{offre.typeContrat.name}}</br></p>
-
-			<a href="{{path('offreShow', {'id':offre.id}) }}" class="btn btn-primary">Montrer</a>
+			<div class="card border-dark mb-3">
+  				<div class="card-header">{{offre.typeContrat.name}}</div>
+  					<div class="card-body">
+    					<h4 class="card-title">{{offre.Title}}</h4>
+    					<p class="card-text">Ville: {{offre.Ville}}</br> Contrat: {{offre.contrat.Name }}</p>
+						<a href="{{path('offreShow', {'id':offre.id}) }}" class="btn btn-primary">Montrer</a>
+  					</div>
+			</div>
+				
+			
+			
+			
 
 
 		{% endfor %}
-
-
-	</section>
-
-
 {% endblock %}
