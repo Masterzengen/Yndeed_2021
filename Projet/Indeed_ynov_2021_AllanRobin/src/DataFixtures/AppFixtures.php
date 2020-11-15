@@ -16,15 +16,29 @@ class AppFixtures extends Fixture
     {
         $faker = Faker\Factory::create('fr_FR');
 
-        $Contrat = new Contrat();
-        $Contrat->setName("CDD");
+        $ContratCdd = new Contrat();
+        $ContratCdd->setName("CDD");
 
-        $manager->persist($Contrat);
+        $ContratCdi = new Contrat();
+        $ContratCdi->setName("CDI");
 
-        $TypeContrat = new TypeContrat();
-        $TypeContrat->setName("Temps plein");
+        $ContratFree = new Contrat();
+        $ContratFree->setName("FREELANCE");
 
-        $manager->persist($TypeContrat);
+
+
+        $manager->persist($ContratCdd);
+        $manager->persist($ContratCdi);
+        $manager->persist($ContratFree);
+
+        $TypeContratTplein = new TypeContrat();
+        $TypeContratTplein->setName("Temps plein");
+
+        $TypeContratTpartiel = new TypeContrat();
+        $TypeContratTpartiel->setName("Temps partiel");
+
+        $manager->persist($TypeContratTplein);
+        $manager->persist($TypeContratTpartiel);
 
         for ($i = 1; $i <= 10; $i++) {
             $offre = new Offres();
@@ -36,8 +50,8 @@ class AppFixtures extends Fixture
                 ->setDateDeCreation(new \DateTime())
                 ->setDateDeMiseAJour(new \DateTime())
                 ->setFinDeLaMission(new \DateTime())
-                ->setContrat($Contrat)
-                ->setTypeContrat($TypeContrat);
+                ->setContrat($faker->randomElement($array = array ($ContratCdd,$ContratCdi,$ContratFree)))
+                ->setTypeContrat($faker->randomElement($array = array ($TypeContratTplein,$TypeContratTpartiel)));
             $manager->persist($offre);
         }
         // $product = new Product();
