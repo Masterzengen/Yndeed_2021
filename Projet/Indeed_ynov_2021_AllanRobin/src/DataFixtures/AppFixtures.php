@@ -40,7 +40,7 @@ class AppFixtures extends Fixture
         $manager->persist($TypeContratTplein);
         $manager->persist($TypeContratTpartiel);
 
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 15; $i++) {
             $offre = new Offres();
             $offre->setTitle("Offre incoyable n°$i")
                 ->setDescription($faker->text)
@@ -49,9 +49,14 @@ class AppFixtures extends Fixture
                 ->setVille($faker->city)
                 ->setDateDeCreation(new \DateTime())
                 ->setDateDeMiseAJour(new \DateTime())
-                ->setFinDeLaMission(new \DateTime())
                 ->setContrat($faker->randomElement($array = array ($ContratCdd,$ContratCdi,$ContratFree)))
-                ->setTypeContrat($faker->randomElement($array = array ($TypeContratTplein,$TypeContratTpartiel)));
+                ->setTypeContrat($faker->randomElement($array = array ($TypeContratTplein,$TypeContratTpartiel)))
+                ->setFinDeLaMission($faker->dateTimeBetween($startDate = 'now', $endDate = '3 years'));
+       
+
+
+
+
             $manager->persist($offre);
         }
         // $product = new Product();

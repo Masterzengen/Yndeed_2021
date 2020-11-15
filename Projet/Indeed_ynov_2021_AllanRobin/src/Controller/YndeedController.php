@@ -30,10 +30,12 @@ class YndeedController extends AbstractController
 
     public function home()
     {
-        return $this->render(
-            'yndeed/home.html.twig',
-            ['title' => "Salutations!"]
-        );
+        $repo = $this->getDoctrine()->getRepository(Offres::class);
+        $offres = $repo->findAll();
+        return $this->render('yndeed/home.html.twig',
+            ['title' => "Yndeed",
+            'offres' => $offres
+        ]);
     }
 
     /**

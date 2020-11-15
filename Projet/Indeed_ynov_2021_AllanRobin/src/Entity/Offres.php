@@ -70,6 +70,8 @@ class Offres
     private $contrat;
 
 
+
+
   
 
     public function getId(): ?int
@@ -196,6 +198,9 @@ class Offres
 
         return $this;
     }
+
+
+
 
 
 

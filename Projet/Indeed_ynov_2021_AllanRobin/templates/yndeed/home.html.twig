@@ -1,11 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<h1>{{title}}</h1>
+	<center><h1>{{title}}</h1></center>
 
 	<p>
-		Page d'acceuil de qualité 
+		Bienvenue sur Yndeed! Vous pouvez dès à présent accéder à un échantillon d'offres et accéder à la liste complète dans la section "Offres" ou en bas de page.
 	</p>
+
+	{% for offre in offres | slice(0,5) %}
+		<div class="card border-dark mb-3">
+  				<div class="card-header">{{offre.typeContrat.name}}</div>
+  					<div class="card-body">
+    					<h4 class="card-title">{{offre.Title}}</h4>
+    					<p class="card-text">Ville: {{offre.Ville}}</br> Contrat: {{offre.contrat.Name }}</p>
+						{% if offre.contrat.Name is same as("CDD") or offre.contrat.Name is same as("FREELANCE")%}
+						<p>Fin de la mission: {{offre.FinDeLaMission | date('d/m/Y')}}</p>
+						
+						{% endif %}
+						<a href="{{path('offreShow', {'id':offre.id}) }}" class="btn btn-primary">Montrer</a>
+  					</div>
+			</div>
+	{% endfor %}
     <p>Accédez à la liste des offres</br></p>
     <a href="{{path('offres')}}" class="btn btn-primary">Offres</a>
 
