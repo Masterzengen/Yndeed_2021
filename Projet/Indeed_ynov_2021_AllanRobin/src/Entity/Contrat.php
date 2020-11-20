@@ -32,6 +32,13 @@ class Contrat
 
 
 
+    public function __toString(): string
+    {
+        return $this->Name;
+    }
+
+
+
     public function __construct()
     {
         $this->contrat = new ArrayCollection();
