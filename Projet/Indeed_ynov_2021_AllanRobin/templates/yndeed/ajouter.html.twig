@@ -8,6 +8,8 @@
 {% block body %}
 <h1>Ajouter une offre</h1>
 
+{{ form_start(form) }}
+
 
 {{ form_row(form.Title) }}
 
@@ -24,6 +26,8 @@
 {{ form_row(form.contrat) }}
 
 <button type="submit" class="btn btn-success">Ajouter</button>
+
+{{ form_end(form) }}
 
 
 {% endblock %}
