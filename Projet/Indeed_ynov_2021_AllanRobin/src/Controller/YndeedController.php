@@ -87,7 +87,6 @@ class YndeedController extends AbstractController
         if($form->isSubmitted()){
             $offre->setDateDeCreation(new \DateTime());
             $offre->setDateDeMiseAJour(new \DateTime());
-            $offre->setFinDeLaMission(new \DateTime());
             $em->persist($offre);
             $em->flush();
             return $this->redirectToRoute('offreShow',['id'=>$offre->getId()]);
