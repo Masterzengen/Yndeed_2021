@@ -14,6 +14,7 @@
 				{% endif %}
     <p>Dernière mise à jour: {{offre.dateDeMiseAJour | date('d/m/Y')}}   </br> Date de création: {{offre.DateDeCreation | date('d/m/Y')}}</p>
     <a href="{{path('postuler', {'id':offre.id}) }}" class="btn btn-primary">Postuler</a>
+	<a href="{{path('edit', {'id':offre.id}) }}" class="btn btn-primary">Modifier</a>
     <a href="{{path('offres')}}" class="btn btn-primary">Retour</a>
 
 

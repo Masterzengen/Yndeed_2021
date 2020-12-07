@@ -75,10 +75,14 @@ class YndeedController extends AbstractController
 
     /**
      * @Route ("/ajouter", name="ajouter")
+     * @Route ("/editer/{id}", name ="edit")
      */
 
-     public function ajouter(Request $request, EntityManagerInterface $em){
-         $offre = new Offres();
+     public function ajouter(Offres $offre = null, Request $request, EntityManagerInterface $em){
+         if(!$offre){
+            $offre = new Offres(); 
+         }
+         
 
          $form = $this->createForm(OffreType::class, $offre);
 
