@@ -13,9 +13,12 @@
 						
 				{% endif %}
     <p>Dernière mise à jour: {{offre.dateDeMiseAJour | date('d/m/Y')}}   </br> Date de création: {{offre.DateDeCreation | date('d/m/Y')}}</p>
-    <a href="{{path('postuler', {'id':offre.id}) }}" class="btn btn-success">Postuler</a>
+    
+	<a href="{{path('postuler', {'id':offre.id}) }}" class="btn btn-success">Postuler</a>
+	{% if app.user %}
 	<a href="{{path('edit', {'id':offre.id}) }}" class="btn btn-info">Modifier</a>
 	<a href="{{path('confirm', {'id':offre.id}) }}" class="btn btn-danger">Supprimer</a>
+	{% endif %}
     <a href="{{path('offres')}}" class="btn btn-primary">Retour</a>
 
 
