@@ -104,6 +104,30 @@ class YndeedController extends AbstractController
 
 
      }
+      
+     /**
+     * @Route ("/offres/confirm/{id}", name="confirm")
+     */
+    public function confirm($id){
+        
+        $repo = $this->getDoctrine()->getRepository(Offres::class);
+        $offre = $repo->find($id);
+        return $this->render('yndeed/confirm.html.twig',[
+            'offre'=>$offre
+            ]);
+     }
+
+    /**
+     * @Route ("/offres/supprimer/{id}", name="supprimer")
+     */
+
+     public function supprimer($id, EntityManagerInterface $em){
+        $rep = $this->getDoctrine()->getRepository(Offres::class)->find($id);
+        $em->remove($rep);
+        $em->flush();
+        return $this->redirectToRoute('home');
+
+     }
 
 
 
