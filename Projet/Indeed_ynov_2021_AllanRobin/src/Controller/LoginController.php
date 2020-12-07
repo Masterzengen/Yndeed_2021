@@ -26,6 +26,7 @@ class LoginController extends AbstractController
             $user->setPassword($hash);
             $em->persist($user);
             $em->flush();
+            return $this->redirectToRoute('login');
         }
         return $this->render('login/registration.html.twig', [
             'form' => $form->createView(),
