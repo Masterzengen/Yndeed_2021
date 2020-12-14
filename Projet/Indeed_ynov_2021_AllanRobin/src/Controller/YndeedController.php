@@ -66,6 +66,7 @@ class YndeedController extends AbstractController
      */
 
     public function postuler($id){
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $repo = $this->getDoctrine()->getRepository(Offres::class);
         $offre = $repo->find($id);
         return $this->render('yndeed/postuler.html.twig',[
@@ -79,6 +80,7 @@ class YndeedController extends AbstractController
      */
 
      public function ajouter(Offres $offre = null, Request $request, EntityManagerInterface $em){
+        $this->denyAccessUnlessGranted('ROLE_USER');
          if(!$offre){
             $offre = new Offres(); 
          }
@@ -109,6 +111,7 @@ class YndeedController extends AbstractController
      * @Route ("/offres/confirm/{id}", name="confirm")
      */
     public function confirm($id){
+        $this->denyAccessUnlessGranted('ROLE_USER');
         
         $repo = $this->getDoctrine()->getRepository(Offres::class);
         $offre = $repo->find($id);
@@ -122,6 +125,7 @@ class YndeedController extends AbstractController
      */
 
      public function supprimer($id, EntityManagerInterface $em){
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $rep = $this->getDoctrine()->getRepository(Offres::class)->find($id);
         $em->remove($rep);
         $em->flush();
